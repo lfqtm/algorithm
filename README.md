@@ -1,2 +1,2 @@
 # algorithm
-algorithm in c
+algorithm in Java
