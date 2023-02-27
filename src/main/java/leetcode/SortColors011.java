@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import static com.algo.class01.Sorts.swap;
 
-public class SortColors111 {
+public class SortColors011 {
 
 	public static void main(String[] args) {
 		int[] nums = new int[]{2, 0, 2, 1, 1, 0};
