@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * 169. 多数元素
+ * 268. 丢失的数字
  */
-public class ContainsDuplicate020 {
+public class MissingNumber022 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -16,16 +16,16 @@ public class ContainsDuplicate020 {
 			nums[i] = sc.nextInt();
 		}
 
-		System.out.println(containsDuplicate(nums));
-
+		System.out.println(missingNumber(nums));
 	}
 
-	public static boolean containsDuplicate(int[] nums) {
+	public static int missingNumber(int[] nums) {
 		Arrays.sort(nums);
-		for (int i = 0; i < nums.length - 1; i++) {
-			if (nums[i] == nums[i+1])
-				return true;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] != i)
+				return i;
 		}
-		return false;
+		return nums.length;
+
 	}
 }
