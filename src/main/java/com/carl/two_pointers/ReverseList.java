@@ -1,6 +1,6 @@
 package com.carl.two_pointers;
 
-import com.leetcode.ListNode;
+import leetcode.utils.ListNode;
 
 import java.util.Stack;
 

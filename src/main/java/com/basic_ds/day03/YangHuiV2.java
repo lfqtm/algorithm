@@ -1,4 +1,4 @@
-package com.leetcode.basic_ds.day03;
+package com.basic_ds.day03;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.leetcode.basic_ds.day04;
+package com.basic_ds.day04;
 
 /**
  * 特殊矩阵搜索

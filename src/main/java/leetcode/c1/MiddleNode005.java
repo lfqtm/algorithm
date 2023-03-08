@@ -1,6 +1,6 @@
 package leetcode.c1;
 
-import com.leetcode.ListNode;
+import leetcode.utils.ListNode;
 
 /**
  * 876. 链表的中间结点

@@ -1,4 +1,4 @@
-package com.leetcode.basic_ds.day02;
+package com.basic_ds.day02;
 
 import com.algo.class01.Sorts;
 
