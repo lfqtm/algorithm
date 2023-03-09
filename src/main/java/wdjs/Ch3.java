@@ -48,6 +48,7 @@ public class Ch3 {
 		System.out.println(binarySearch(nums, x));
 	}
 
+	//二分
 	private int binarySearch(int[] nums, int x) {
 		int l = 0, r = nums.length - 1;
 		while (l <= r) {
@@ -96,6 +97,7 @@ public class Ch3 {
 		System.out.println(Arrays.toString(nums));
 	}
 
+	//数组逆置
 	public void reverse(int[] nums, int l, int r) {
 		int temp = 0;
 		while (l < r) {
