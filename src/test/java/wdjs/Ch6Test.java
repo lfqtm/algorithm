@@ -37,4 +37,19 @@ class Ch6Test {
 	void solve6_8() {
 		ch6.solve6_8();
 	}
+
+	@Test
+	void solve6_6_drill() {
+		ch6.solve6_6_drill();
+	}
+
+	@Test
+	void solve6_9() {
+		ch6.solve6_9();
+	}
+
+	@Test
+	void solve6_11() {
+		ch6.solve6_11();
+	}
 }
