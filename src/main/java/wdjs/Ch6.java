@@ -139,13 +139,17 @@ public class Ch6 {
 	}
 
 	// 判断是否为素数（除了1和数本身，不能被其他数据整除）
-	public boolean isPrime(int n) {
+	public static boolean isPrime(int n) {
 		for (int i = 2; i <= Math.sqrt(n); i++) {
 			if (n % i == 0)
 				return false;
 		}
 		return true;
 
+	}
+
+	public static void main(String[] args) {
+		System.out.println(isPrime(2));
 	}
 
 	/**
