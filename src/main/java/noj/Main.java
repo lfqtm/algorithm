@@ -7,38 +7,93 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
-		int[][] areas = new int[n][n]; //瓜地
-		System.out.println(Arrays.deepToString(areas));
-		int k = sc.nextInt(); //洒水器
-		int r = sc.nextInt(); //半径
-
-		for (int i = 0; i < k; i++) {
-			int x = sc.nextInt() - 1;
-			int y = sc.nextInt() - 1;
-			areas[x][y] = 1;
-			for (int j = 1; j <= r; j++) {
-				if (x + j < n)
-					areas[x + j][y] = 1;
-				if (x - j >= 0)
-					areas[x - j][y] = 1;
-				if (y + j < n)
-					areas[x][y + j] = 1;
-				if (y - j >= 0)
-					areas[x][y - j] = 1;
-			}
-		}
-
-		int count = 0;
+		int m = sc.nextInt();
+		int[][] mat = new int[n][m];
 		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				if (areas[i][j] == 1)
-					count++;
+			for (int j = 0; j < m; j++) {
+				mat[i][j] = sc.nextInt();
 			}
 		}
 
-		System.out.println(count);
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (mat[i][j] == 1) {
+					for (int k = 0; k < m; k++) {
+						mat[i][k] = 0;
+					}
+					for (int k = 0; k < n; k++) {
+						mat[k][j] = 0;
+					}
+				}
+
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			StringBuilder sb = new StringBuilder();
+			for (int j = 0; j < m; j++) {
+				if (j == m - 1) {
+					sb.append(mat[i][j]);
+				} else {
+					sb.append(mat[i][j]).append(" ");
+				}
+			}
+			System.out.println(sb.toString());
+		}
 
 	}
+
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int[] nums = new int[n];
+//		for (int i = 0; i < n; i++) {
+//			nums[i] = sc.nextInt();
+//		}
+//
+//		Arrays.sort(nums);
+//		int sum = 0;
+//		for (int i = n - 1; i >= n - 3; i--) {
+//			sum += nums[i];
+//		}
+//		System.out.println(sum);
+//	}
+
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int[][] areas = new int[n][n]; //瓜地
+//		System.out.println(Arrays.deepToString(areas));
+//		int k = sc.nextInt(); //洒水器
+//		int r = sc.nextInt(); //半径
+//
+//		for (int i = 0; i < k; i++) {
+//			int x = sc.nextInt() - 1;
+//			int y = sc.nextInt() - 1;
+//			areas[x][y] = 1;
+//			for (int j = 1; j <= r; j++) {
+//				if (x + j < n)
+//					areas[x + j][y] = 1;
+//				if (x - j >= 0)
+//					areas[x - j][y] = 1;
+//				if (y + j < n)
+//					areas[x][y + j] = 1;
+//				if (y - j >= 0)
+//					areas[x][y - j] = 1;
+//			}
+//		}
+//
+//		int count = 0;
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < n; j++) {
+//				if (areas[i][j] == 1)
+//					count++;
+//			}
+//		}
+//
+//		System.out.println(count);
+//
+//	}
 
 //	public static void main(String[] args) {
 //		Scanner sc = new Scanner(System.in);
