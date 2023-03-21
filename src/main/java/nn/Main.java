@@ -1,5 +1,7 @@
 package nn;
 
+import sun.reflect.annotation.AnnotationSupport;
+
 import java.util.*;
 
 /**
@@ -7,23 +9,211 @@ import java.util.*;
  */
 public class Main {
 
-	// 删除字符串2
+	// 输出杨辉三角
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		String ins = sc.next();
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < ins.length(); i++) {
-			char cur = ins.charAt(i);
-			if (cur == 'g' || cur == 'G') {
-				if (ins.substring(i, i + 3).toUpperCase().equals("GZU")) {
-					i += 2;
-					continue;
+		while (sc.hasNextInt()) {
+			int n = sc.nextInt();
+			List<List<Integer>> ans = new ArrayList<>();
+			for (int i = 0; i < n; i++) { //控制行数
+				List<Integer> row = new ArrayList<>();
+				for (int j = 0; j <= i; j++) { //控制每行个数
+					if (j == 0 || j == i)
+						row.add(1);
+					else
+						row.add(ans.get(i - 1).get(j) + ans.get(i - 1).get(j - 1));
 				}
+				ans.add(row);
 			}
-			sb.append(cur);
+
+			for (int i = 0; i < ans.size(); i++) {
+				List<Integer> list = ans.get(i);
+				if (i != 0)
+					System.out.println();
+				for (int j = 0; j < list.size(); j++) {
+					if (j != 0)
+						System.out.print(" ");
+					System.out.print(list.get(j));
+				}
+
+			}
 		}
-		System.out.print(sb.toString());
+
+
 	}
+
+	// 博学楼的阶梯
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int t = sc.nextInt(); // t组样例
+//		int n = sc.nextInt(); // n层楼梯
+//		int[] nums = new int[n];
+//		for (int i = 0; i < n; i++) {
+//			nums[i] = sc.nextInt();
+//		}
+//
+//		int pre = 1;
+//		int sum = 0;
+//		for (int i = 0; i < n; i++) {
+//			int cur = nums[i];
+//			if (cur > pre)
+//				sum += (cur - pre) * 6;
+//			else
+//				sum += (pre - cur) * 4;
+//			sum += 3;
+//			pre = cur;
+//		}
+//		System.out.print(sum);
+//	}
+
+	// 幂次方(快速幂)
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int x = sc.nextInt();
+//		int n = sc.nextInt();
+//		int num = 1;
+//		while (n > 0) { // 每次循环都在算n/2的幂的分解形式
+//			if (n % 2 == 1)
+//				num *= x % 233333;
+//			x = x * x % 233333;
+//			n /= 2;
+//		}
+//		System.out.print(num);
+//	}
+
+	// 成绩排序
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int i = sc.nextInt(); //0标识降序，1标识升序
+//		String[] names = new String[n];
+//		int[][] nums = new int[n][2]; //n行2列，第二列用来表示下标
+//		for (int j = 0; j < n; j++) {
+//			names[j] = sc.next();
+//			nums[j][0] = sc.nextInt();
+//			nums[j][1] = j;
+//		}
+//
+//		Arrays.sort(nums, (o1,o2)-> {
+//			if (0 == i)
+//				return o2[0]-o1[0];
+//			return o1[0]-o2[0];
+//		});
+//
+//		for (int j = 0; j < n; j++) {
+//			if (j != 0)
+//				System.out.println();
+//			System.out.printf("%s %d", names[nums[j][1]], nums[j][0]);
+//		}
+//	}
+
+	// 字符分类
+	// 48-57：0~9
+	// 65-90: 大写字母
+	// 97-122：小写字母
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		String str = sc.next();
+//		StringBuilder s1 = new StringBuilder();
+//		StringBuilder s2 = new StringBuilder();
+//		StringBuilder s3 = new StringBuilder();
+//		for (int i = 0; i < str.length(); i++) {
+//			char ch = str.charAt(i);
+//			if (ch >= 48 && ch <= 57)
+//				s2.append(ch);
+//			else if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122))
+//				s1.append(ch);
+//			else
+//				s3.append(ch);
+//		}
+//
+//		System.out.println(s1.toString());
+//		System.out.println(s2.toString());
+//		System.out.print(s3.toString());
+//	}
+
+	// 二进制数
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		System.out.print(Integer.toBinaryString(n)); //转为2进制
+//	}
+
+	// 进制转换2 (Integer.parseInt())
+	//hex.substring(2) 16进制前面有0x
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		String hex = sc.next();
+//		System.out.print(Integer.parseInt(hex.substring(2), 16));
+//	}
+
+	// 翻转数的和
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		while (sc.hasNextInt()) {
+//			int c = sc.nextInt();
+//			int d = sc.nextInt();
+//			System.out.print(rev(c) + rev(d));
+//		}
+//	}
+
+	// 翻转数字
+	public static int rev(int n) {
+		int ans = 0;
+		while (n != 0) {
+			ans *= 10;
+			ans += n % 10;
+			n /= 10;
+		}
+		return ans;
+	}
+
+	//0和1的个数
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		String str = Integer.toBinaryString(n);
+//		int count0 = 0;
+//		int count1 = 0;
+//		for (int i = 0; i < str.length(); i++) {
+//			char c = str.charAt(i);
+//			if (c == '0')
+//				count0++;
+//			if (c == '1')
+//				count1++;
+//		}
+//		System.out.printf("count0=%d count1=%d", count0, count1);
+//	}
+
+	// 随机数
+//	public static void main(String[] args) {
+//		int[] randomNums = new int[5];
+//		for (int i = 0; i < 5; i++) {
+//			randomNums[i] = (int) (Math.random() * 20 + 1); // [1-20]的随机整数
+//		}
+//		System.out.println(Arrays.stream(randomNums).sum());
+//		// 求1-20的累和
+//		int sum = 20 + 20 * 19 / 2;
+//		System.out.print(sum);
+//	}
+
+	// 删除字符串2
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		String ins = sc.next();
+//		StringBuilder sb = new StringBuilder();
+//		for (int i = 0; i < ins.length(); i++) {
+//			char cur = ins.charAt(i);
+//			if (cur == 'g' || cur == 'G') {
+//				if (ins.substring(i, i + 3).toUpperCase().equals("GZU")) {
+//					i += 2;
+//					continue;
+//				}
+//			}
+//			sb.append(cur);
+//		}
+//		System.out.print(sb.toString());
+//	}
 
 	// 反序数
 //	public static void main(String[] args) {
