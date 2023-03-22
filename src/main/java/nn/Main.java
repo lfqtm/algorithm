@@ -1,7 +1,5 @@
 package nn;
 
-import sun.reflect.annotation.AnnotationSupport;
-
 import java.util.*;
 
 /**
@@ -9,38 +7,337 @@ import java.util.*;
  */
 public class Main {
 
-	// 输出杨辉三角
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNextInt()) {
-			int n = sc.nextInt();
-			List<List<Integer>> ans = new ArrayList<>();
-			for (int i = 0; i < n; i++) { //控制行数
-				List<Integer> row = new ArrayList<>();
-				for (int j = 0; j <= i; j++) { //控制每行个数
-					if (j == 0 || j == i)
-						row.add(1);
-					else
-						row.add(ans.get(i - 1).get(j) + ans.get(i - 1).get(j - 1));
-				}
-				ans.add(row);
-			}
+	// 最长连续因子
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		List<List<Integer>> ans = new ArrayList<>();
+//
+//		for (int i = 2; i <= n; i++) {
+//			if (n % i == 0) {
+//				List<Integer> r = new ArrayList<>();
+//				int j;
+//				for (j = i; j <= n; j++) {
+//					if (n % j == 0) {
+//						r.add(j);
+//					} else {
+//						break;
+//					}
+//				}
+//				ans.add(r);
+//				i = j;
+//			}
+//		}
+//
+//		int max = 0;
+//		for (int i = 0; i < ans.size(); i++) {
+//			if (ans.get(i).size() > ans.get(max).size())
+//				max = i;
+//		}
+//
+//		List<Integer> maxLs = ans.get(max);
+//		for (int i = 0; i < maxLs.size(); i++) {
+//			if (i != 0)
+//				System.out.print(" ");
+//			System.out.print(maxLs.get(i));
+//		}
+//	}
 
-			for (int i = 0; i < ans.size(); i++) {
-				List<Integer> list = ans.get(i);
-				if (i != 0)
-					System.out.println();
-				for (int j = 0; j < list.size(); j++) {
-					if (j != 0)
-						System.out.print(" ");
-					System.out.print(list.get(j));
-				}
+	// 字母频率
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		String line = sc.nextLine().toLowerCase(); // 转换成小写
+//		int[] nums = new int[26];
+//		for (int i = 0; i < line.length(); i++) {
+//			char ch = line.charAt(i);
+//			if (ch >= 97 && ch <= 122) { // 小写a到z统计
+//				nums[ch - 'a']++;
+//			}
+//		}
+//
+//		int max = 0; // 记录下标
+//		int count = 0; // 记录个数
+//		for (int i = 0; i < 26; i++) {
+//			if (count < nums[i]) {
+//				max = i;
+//				count = nums[i];
+//			}
+//		}
+//		System.out.printf("%c %d", (char) max + 97, count);
+//	}
 
-			}
+	// 字符菱形
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int maxLen = 1 + (n - 1) * 2;
+//		for (int i = 1; i <= maxLen; i += 2) {
+//			if (i != 1)
+//				System.out.println();
+//			int blank = (maxLen - i) / 2;
+//			for (int j = 0; j < blank; j++) {
+//				System.out.print(" ");
+//			}
+//			for (int j = 0; j < i; j++) {
+//				System.out.print("*");
+//			}
+//			for (int j = 0; j < blank; j++) {
+//				System.out.print(" ");
+//			}
+//		}
+//
+//		for (int i = maxLen - 2; i > 0; i -= 2) {
+//			System.out.println();
+//			int blank = (maxLen - i) / 2;
+//			for (int j = 0; j < blank; j++) {
+//				System.out.print(" ");
+//			}
+//			for (int j = 0; j < i; j++) {
+//				System.out.print("*");
+//			}
+//			for (int j = 0; j < blank; j++) {
+//				System.out.print(" ");
+//			}
+//		}
+//	}
+
+	// 三个数的最大值
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		String[] s = sc.nextLine().split(" ");
+//		int[] nums = new int[s.length];
+//		for (int i = 0; i < nums.length; i++) {
+//			nums[i] = Integer.parseInt(s[i]);
+//		}
+//
+//		Arrays.sort(nums);
+//		System.out.print(nums[nums.length - 1]);
+//	}
+
+	// 最大公约数和最小公倍数
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int m = sc.nextInt();
+//		int n = sc.nextInt();
+//		int gcd = gcd(m, n);
+//		int lcm = m * n / gcd;
+//		System.out.printf("%d %d", gcd, lcm);
+//	}
+
+	// gcd，最大公约数
+	public static int gcd(int a, int b) {
+		return b == 0 ? a : gcd(b, a % b);
+	}
+
+
+	// 查找第k小数
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int[] nums = new int[n];
+//		for (int i = 0; i < n; i++) {
+//			nums[i] = sc.nextInt();
+//		}
+//		int k = sc.nextInt();
+//		Arrays.sort(nums);
+//		// 双指针
+//		int l = 0, r = 0;
+//		int count = 1;
+//		while (r < n && count < k) {
+//			if (nums[l] != nums[r]) {
+//				count++; // +1已经表示有两个较小值了
+//				l = r;
+//			}
+//			r++;
+//		}
+//		System.out.print(nums[l]);
+//	}
+
+	// 日期计算
+//	public static void main(String[] args) {
+//		int[][] mons = new int[][]{
+//			{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
+//			{31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+//		};
+//
+//		Scanner sc = new Scanner(System.in);
+//		int year = sc.nextInt();
+//		int mon = sc.nextInt();
+//		int day = sc.nextInt();
+//
+//		int leap = isLeap(year);
+//		int sum = 0;
+//		// 之前的月份和
+//		for (int i = 1; i < mon; i++) {
+//			sum += mons[leap][i-1];
+//		}
+//		// 当前月份天数
+//		sum += day;
+//		System.out.print(sum);
+//	}
+
+	// 判断是否是闰年, 返回1表示闰年，0表示平常年
+	public static int isLeap(int year) {
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+			return 1;
+		return 0;
+	}
+
+	// 查找学生信息
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int m = sc.nextInt();
+//		int[] books = new int[m];
+//		int[] readers = new int[n];
+//		for (int i = 0; i < n; i++) {
+//			int p = sc.nextInt();
+//			readers[i] = p;
+//			books[p]++;
+//		}
+//
+//		for (int i = 0; i < n; i++) {
+//			if (i != 0)
+//				System.out.println();
+//			if (books[readers[i]] == 1)
+//				System.out.print("BeiJu");
+//			else
+//				System.out.print(books[readers[i]] - 1);
+//		}
+//	}
+
+	// 素数
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//
+//		List<Integer> ans = new ArrayList<>();
+//		for (int i = 2; i < n; i++) {
+//			if (i % 10 == 1 && isPrime(i)) {
+//				ans.add(i);
+//			}
+//		}
+//
+//		for (int i = 0; i < ans.size(); i++) {
+//			if (i != 0)
+//				System.out.print(" ");
+//			System.out.print(ans.get(i));
+//
+//		}
+//	}
+
+	// 素数
+	public static boolean isPrime2(int n) {
+		for (int i = 2; i <= Math.sqrt(n); i++) {
+			if (n % i == 0)
+				return false;
+		}
+		return true;
+	}
+
+	// 水仙花数
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		while (sc.hasNextLine()) {
+//			String[] s = sc.nextLine().split(" ");
+//			int m = Integer.parseInt(s[0]);
+//			int n = Integer.parseInt(s[1]);
+//			if (m == 0 && n == 0)
+//				break;
+//			List<Integer> ans = new ArrayList<>();
+//			for (int i = m; i <= n; i++) {
+//				char[] ch = String.valueOf(i).toCharArray();
+//				int sum = 0;
+//				for (char ch1 : ch) {
+//					sum += Math.pow(ch1 - '0', 3);
+//				}
+//				if (sum == i)
+//					ans.add(i);
+//			}
+//			if (ans.size() == 0)
+//				System.out.println("no");
+//			else {
+//				for (int i = 0; i < ans.size(); i++) {
+//					if (i != 0)
+//						System.out.print(" ");
+//					System.out.print(ans.get(i));
+//					if (i == ans.size() - 1)
+//						System.out.println();
+//				}
+//			}
+//		}
+//	}
+
+	static class Node {
+		int element;
+		Node next;
+
+		public Node() {
 		}
 
-
+		public Node(int element, Node next) {
+			this.element = element;
+			this.next = next;
+		}
 	}
+
+	// 单链表
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		String[] s = sc.nextLine().split(" ");
+//		// 获取输入数据
+//		List<Integer> nums = Arrays.stream(s).map(Integer::parseInt).collect(Collectors.toList());
+//
+//		Node head = new Node(Integer.MIN_VALUE, null);
+//		Node p = null;
+//		for (int element : nums) {
+//			p = head;
+//			//找到一个小于等于element的node
+//			while (p.next != null && p.next.element < element)
+//				p = p.next;
+//			Node cur = new Node(element, null);
+//			cur.next = p.next;
+//			p.next = cur;
+//		}
+//		// 遍历
+//		p = head.next;
+//		while (p != null) {
+//			if (p != head.next)
+//				System.out.print(" ");
+//			System.out.print(p.element);
+//			p = p.next;
+//		}
+//	}
+
+	// 输出杨辉三角
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		while (sc.hasNextInt()) {
+//			int n = sc.nextInt();
+//			List<List<Integer>> ans = new ArrayList<>();
+//			for (int i = 0; i < n; i++) { //控制行数
+//				List<Integer> row = new ArrayList<>();
+//				for (int j = 0; j <= i; j++) { //控制每行个数
+//					if (j == 0 || j == i)
+//						row.add(1);
+//					else
+//						row.add(ans.get(i - 1).get(j) + ans.get(i - 1).get(j - 1));
+//				}
+//				ans.add(row);
+//			}
+//
+//			for (int i = 0; i < ans.size(); i++) {
+//				List<Integer> list = ans.get(i);
+//				if (i != 0)
+//					System.out.println();
+//				for (int j = 0; j < list.size(); j++) {
+//					if (j != 0)
+//						System.out.print(" ");
+//					System.out.print(list.get(j));
+//				}
+//			}
+//		}
+//	}
 
 	// 博学楼的阶梯
 //	public static void main(String[] args) {
