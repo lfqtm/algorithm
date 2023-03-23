@@ -7,6 +7,270 @@ import java.util.*;
  */
 public class Main {
 
+	// 日期差值
+	//20110412
+	//20110422
+	public static void main(String[] args) {
+
+	}
+
+	// 杨辉三角
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		for (int i = 1; i <= n; i++) {
+//			if (i != 1)
+//				System.out.println();
+//			for (int j = 1; j <= i; j++) {
+//				if (j != 1)
+//					System.out.print(" ");
+//				System.out.print(yang(i, j));
+//			}
+//		}
+//		System.out.println();
+//		System.out.print(yang(3, 2));
+//	}
+
+	// 递归求杨辉三角
+	public static int yang(int i, int j) {
+		if (j == 1 || j == i) // 每行第一个元素和最后一个元素都为1
+			return 1;
+		else
+			return yang(i - 1, j - 1) + yang(i - 1, j);
+	}
+
+	// 矩阵旋转180
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int[][] mat1 = new int[n][n];
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < n; j++) {
+//				mat1[i][j] = sc.nextInt();
+//			}
+//		}
+//
+//		int[][] NewMat = new int[n][n];
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < n; j++) {
+//				NewMat[n - i - 1][n - j - 1] = mat1[i][j];
+//			}
+//		}
+//
+//		System.out.print(Arrays.deepToString(NewMat));
+//	}
+
+	// 矩阵旋转90
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int[][] nums = new int[n][n];
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < n; j++) {
+//				nums[i][j] = sc.nextInt();
+//			}
+//		}
+//
+//		// 旋转
+//		int[][] Nums = new int[n][n];
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < n; j++) {
+//				Nums[j][n - i - 1] = nums[i][j];
+//			}
+//		}
+//
+//		// 矩阵扁平化
+//		int[] flat = new int[n * n];
+//		for (int i = 0; i < n * n; i++) {
+//			flat[i] = nums[i/n][i%n];
+//		}
+//
+//		System.out.print(Arrays.deepToString(Nums));
+//		System.out.println(Arrays.toString(flat));
+//	}
+
+	// 矩阵旋转
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int[][] m1 = new int[n][n];
+//		int[][] m2 = new int[n][n];
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < n; j++) {
+//				m1[i][j] = sc.nextInt();
+//			}
+//		}
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < n; j++) {
+//				m2[i][j] = sc.nextInt();
+//			}
+//		}
+//
+//		int angle = 0; //角度
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < n; j++) {
+//				if (angle == 0) {
+//					if (m1[i][j] == m2[i][j]) //0度 aij = bij
+//						continue;
+//					else
+//						angle = 90;
+//				}
+//
+//				if (angle == 90) {
+//					if (m1[i][j] == m2[j][n - i - 1]) //90 aij = bj,n-i-1
+//						continue;
+//					else
+//						angle = 180;
+//				}
+//
+//				if (angle == 180) {
+//					if (m1[i][j] == m2[n - i - 1][n - j - 1]) // 180 aij = bn-i-1,n-j-1
+//						continue;
+//					else
+//						angle = 270;
+//				}
+//
+//				if (angle == 270) {
+//					if (m1[i][j] == m2[n - j - 1][i]) //270 aij = bn-j-i,i
+//						continue;
+//					else
+//						angle = -1;
+//				}
+//
+//				if (angle == -1) {
+//					break;
+//				}
+//			}
+//			if (angle == -1) {
+//				break;
+//			}
+//		}
+//		System.out.print(angle);
+//	}
+
+	// 删除最大最小值
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int[] nums = new int[n];
+//		for (int i = 0; i < n; i++) {
+//			nums[i] = sc.nextInt();
+//		}
+//
+//		int[] copyNums = new int[n];
+//		System.arraycopy(nums, 0, copyNums, 0, n);
+//		Arrays.sort(copyNums);
+//		int min = copyNums[0];
+//		int max = copyNums[n - 1];
+//		for (int i = 0; i < n; i++) {
+//			int num = nums[i];
+//			if (num != min && num != max) {
+//				System.out.print(num);
+//				if (i != 0 && i != n - 1)
+//					System.out.print(" ");
+//			}
+//		}
+//	}
+
+	// 查找
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int[] nums = new int[n];
+//		for (int i = 0; i < n; i++) {
+//			nums[i] = sc.nextInt();
+//		}
+//		int m = sc.nextInt();
+//		int[] b = new int[m];
+//		for (int i = 0; i < m; i++) {
+//			b[i] = sc.nextInt();
+//		}
+//
+//		Arrays.sort(nums); //数组排序
+//		for (int i = 0; i < m; i++) {
+//			if (i != 0)
+//				System.out.println();
+//			if (Arrays.binarySearch(nums, b[i]) > -1) { //
+//				System.out.print("YES");
+//			} else {
+//				System.out.print("NO");
+//			}
+//		}
+//	}
+
+	// 进制转换
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		List<String> nums = new ArrayList<>();
+//		while (sc.hasNextInt()) {
+//			nums.add(Integer.toString(sc.nextInt(), 2));
+//		}
+//		for (int i = 0; i < nums.size(); i++) {
+//			if (i != 0)
+//				System.out.println();
+//			System.out.print(nums.get(i));
+//		}
+//	}
+
+	// 字母统计
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		String line = sc.nextLine();
+//		int[] nums = new int[26];
+//		for (int i = 0; i < line.length(); i++) {
+//			char ch = line.charAt(i);
+//			if (ch >= 65 && ch <= 90) { // 大写字母 65-90，小写是97到122，数字是48-57
+//				nums[ch - 'A']++;
+//			}
+//		}
+//		for (int i = 0; i < 26; i++) {
+//			if (i != 0)
+//				System.out.println();
+//			System.out.printf("%c:%d", (char) i + 65, nums[i]);
+//		}
+//	}
+
+	// 成绩排序
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		int[][] nums = new int[n][2];
+//		for (int i = 0; i < n; i++) {
+//			nums[i][0] = sc.nextInt();
+//			nums[i][1] = sc.nextInt(); // 成绩
+//		}
+//
+//		Arrays.sort(nums, (o1, o2) -> o1[1] - o2[1]);
+//		for (int i = 0; i < n; i++) {
+//			if (i != 0)
+//				System.out.println();
+//			for (int j = 0; j < nums[i].length; j++) {
+//				if (j != 0)
+//					System.out.print(" ");
+//				System.out.print(nums[i][j]);
+//			}
+//		}
+//	}
+
+	// 击鼓传花
+//	public static void main(String[] args) {
+//		Scanner sc = new Scanner(System.in);
+//		int n = sc.nextInt();
+//		System.out.println(fn(n, 3) + 1);
+//	}
+
+	/**
+	 * f(n,m)=(f(n-1,m)+m)%n
+	 *
+	 * @param n 总数个数
+	 * @param m 步长
+	 */
+	public static int fn(int n, int m) {
+		if (n == 1)
+			return 0; //当只有一个元素的时候，最后一个元素的下标为0
+		return (fn(n - 1, m) + m) % n; //当前轮次的最后元素下标是上一个轮次的下标+步长对n取模
+	}
+
 	// 最长连续因子
 //	public static void main(String[] args) {
 //		Scanner sc = new Scanner(System.in);
