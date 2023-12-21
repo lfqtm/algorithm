@@ -37,6 +37,7 @@ class DynamicArrayTest {
     }
 
     @Test
+    @DisplayName("迭代器遍历")
     public void test3() {
         DynamicArray dynamicArray = new DynamicArray();
         dynamicArray.addLast(1);
@@ -51,6 +52,7 @@ class DynamicArrayTest {
     }
 
     @Test
+    @DisplayName("流式遍历")
     public void test4() {
         DynamicArray dynamicArray = new DynamicArray();
         dynamicArray.addLast(1);
@@ -76,6 +78,20 @@ class DynamicArrayTest {
         assertEquals(3, removed);
 
         assertIterableEquals(List.of(1, 2, 4, 5), dynamicArray);
+    }
+
+    @Test
+    @DisplayName("扩容测试")
+    public void test6() {
+        DynamicArray dynamicArray = new DynamicArray();
+        for (int i = 0; i < 9; i++) {
+            dynamicArray.addLast(i + 1);
+        }
+
+        assertIterableEquals(
+                List.of(1, 2, 3, 4, 5, 6, 7, 8, 9),
+                dynamicArray
+        );
     }
 
 }

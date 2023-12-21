@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class DynamicArray implements Iterable<Integer> {
     private int size = 0; // 逻辑大小
     private int capacity = 8; // 容量
-    private int[] array = new int[capacity]; // 初始数组
+    private int[] array = {}; // 初始数组
 
     public void addLast(int elem) {
         add(size, elem);
@@ -24,12 +24,30 @@ public class DynamicArray implements Iterable<Integer> {
      * @param elem  插入元素
      */
     public void add(int index, int elem) {
+        checkAndGrow();
         if (index >= 0 && index < size) {
             // index后elem都后移一位
             System.arraycopy(array, index, array, index + 1, size - index);
         }
         array[index] = elem;
         size++;
+    }
+
+    /**
+     * 容量检查并扩容
+     */
+    private void checkAndGrow() {
+        // 容量检查
+        if (size == 0) {
+            // 惰性扩容
+            array = new int[capacity];
+        } else if (size == capacity) {
+            // 进行扩容 1.5倍
+            capacity += capacity >>> 1;
+            int[] newArray = new int[capacity];
+            System.arraycopy(array, 0, newArray, 0, size);
+            array = newArray;
+        }
     }
 
     public int get(int index) {
@@ -87,8 +105,11 @@ public class DynamicArray implements Iterable<Integer> {
      */
     public int remove(int index) {
         int removed = array[index];
-        System.arraycopy(array, index + 1, array, index, size - index - 1);
-        size--;
+        if (index < size - 1) {
+            System.arraycopy(array, index + 1, array, index, size - index - 1);
+            size--;
+        }
         return removed;
     }
+
 }
